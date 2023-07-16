@@ -1,0 +1,80 @@
+# Core
+#/wp-admin/
+#/wp-includes/
+#/index.php
+#/license.txt
+#/wp-*.php
+#/xmlrpc.php
+/wp-content/cache/
+/wp-content/debug.log
+*.tmp
+
+# Versioning
+#/readme.html
+
+# Configuration
+#wp-config.php
+wp-config-*.php
+
+# Example themes
+/wp-content/themes/twenty*/
+/wp-content/themes/*/cache/*
+
+# Example plugin
+/wp-content/plugins/hello.php
+
+# Uploads
+#/wp-content/uploads/
+/wp-content/uploads/cache/
+
+# Log files in the root directory
+*.log
+
+# htaccess
+#/.htaccess
+
+# Ignore database backups in the root directory
+#*.sql
+#/.backup.sql
+*.sql.gz
+
+# Ignore .tar.gz and .zip backup files in the root directory
+*.tar.gz
+*.zip
+*.rar
+
+# Ignore build artifacts
+#/build/
+#/node_modules/
+
+# Ignore package lock files
+package-lock.json
+yarn.lock
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore .sh scripts starting with az_
+az_*.sh
+.az_*.sh
+
+#Docker
+wp-config-docker.php
+nginx.conf
+nginx.conf.bak
+docker-compose.yml
+docker-compose.yml.bak
+
+#Capistrano
+Capfile
+Gemfile
+Gemfile.lock
+Gemfile.lock:Zone.Identifier
+Gemfile:Zone.Identifier

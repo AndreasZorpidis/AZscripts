@@ -1,0 +1,47 @@
+# For staging only, disable crawlers, indexing and bots
+<IfModule mod_headers.c>
+    <FilesMatch ".*">
+        Header set X-Robots-Tag "noindex, nofollow, noarchive"
+    </FilesMatch>
+</IfModule>
+
+# For all, grant access to robots.txt
+<Files "robots.txt">
+    Satisfy any
+    Allow from all
+    Order allow,deny
+    Deny from none
+</Files>
+
+# For all, disable access to any bash scripts
+<FilesMatch "\.sh$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# For staging only, require authentication
+<IfModule mod_authn_file.c>
+    AuthType Basic
+    AuthName "Restricted Area"
+    AuthUserFile /var/www/vhosts/staging.domain/.htpasswd
+    Require valid-user
+    <Files "robots.txt">
+        Require all granted
+        Satisfy any
+    </Files>
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+# RewriteRule ^en/wp-login.php /wp-login.php [QSA,L]
+# RewriteRule ^el/wp-login.php /wp-login.php [QSA,L]
+RewriteRule ^([a-zA-Z]+)/wp-login.php /wp-login.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
